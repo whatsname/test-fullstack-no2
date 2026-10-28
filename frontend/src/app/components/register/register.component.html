@@ -1,0 +1,86 @@
+<div class="auth-container">
+  <div class="card-header">
+    <span class="card-badge">Form IT 02-2</span>
+    <h2 class="card-title">สมัครสมาชิกใหม่</h2>
+    <p class="card-subtitle">สร้างบัญชีผู้ใช้งานของคุณเพื่อเริ่มต้น</p>
+  </div>
+
+  <!-- Error Alert -->
+  @if (errorMessage) {
+    <div class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <!-- Success Alert -->
+  @if (successMessage) {
+    <div class="alert alert-success" role="alert">
+      {{ successMessage }}
+    </div>
+  }
+
+  <form (ngSubmit)="onSubmit()">
+    <!-- Username Field -->
+    <div class="form-group">
+      <label for="username" class="form-label">ชื่อผู้ใช้งาน (Username)</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        class="form-control"
+        [(ngModel)]="username"
+        placeholder="ระบุชื่อผู้ใช้งาน"
+        required
+        autocomplete="username"
+      />
+    </div>
+
+    <!-- Password Field (type="password") -->
+    <div class="form-group">
+      <label for="password" class="form-label">รหัสผ่าน (Password)</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        class="form-control"
+        [(ngModel)]="password"
+        placeholder="••••••••"
+        required
+        autocomplete="new-password"
+      />
+    </div>
+
+    <!-- Confirm Password Field (type="password") -->
+    <div class="form-group">
+      <label for="confirmPassword" class="form-label">ยืนยันรหัสผ่าน (Confirm Password)</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        name="confirmPassword"
+        class="form-control"
+        [(ngModel)]="confirmPassword"
+        placeholder="••••••••"
+        required
+        autocomplete="new-password"
+      />
+      @if (password && confirmPassword && password !== confirmPassword) {
+        <p class="error-text">รหัสผ่านทั้งสองช่องไม่ตรงกัน</p>
+      }
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="btn-primary"
+      [disabled]="isLoading || (password !== confirmPassword)"
+    >
+      {{ isLoading ? 'กำลังประมวลผล...' : 'สมัครสมาชิก' }}
+    </button>
+  </form>
+
+  <!-- Redirect to Login -->
+  <div class="form-footer">
+    มีบัญชีผู้ใช้อยู่แล้ว?
+    <a routerLink="/login" class="form-link">เข้าสู่ระบบ</a>
+  </div>
+</div>

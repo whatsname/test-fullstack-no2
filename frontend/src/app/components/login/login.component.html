@@ -1,0 +1,61 @@
+<div class="auth-container">
+  <div class="card-header">
+    <span class="card-badge">Form IT 02-1</span>
+    <h2 class="card-title">ลงชื่อเข้าใช้งาน</h2>
+    <p class="card-subtitle">เข้าสู่ระบบเพื่อจัดการข้อมูลของคุณ</p>
+  </div>
+
+  <!-- Alert Message -->
+  @if (errorMessage) {
+    <div class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <form (ngSubmit)="onSubmit()">
+    <!-- Username Field -->
+    <div class="form-group">
+      <label for="username" class="form-label">ชื่อผู้ใช้งาน (Username)</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        class="form-control"
+        [(ngModel)]="username"
+        placeholder="ระบุชื่อผู้ใช้งาน"
+        required
+        autocomplete="username"
+      />
+    </div>
+
+    <!-- Password Field (type="password") -->
+    <div class="form-group">
+      <label for="password" class="form-label">รหัสผ่าน (Password)</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        class="form-control"
+        [(ngModel)]="password"
+        placeholder="••••••••"
+        required
+        autocomplete="current-password"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="btn-primary"
+      [disabled]="isLoading"
+    >
+      {{ isLoading ? 'กำลังเข้าสู่ระบบ...' : 'ลงชื่อเข้าใช้งาน' }}
+    </button>
+  </form>
+
+  <!-- Redirect to Register -->
+  <div class="form-footer">
+    ยังไม่มีบัญชีผู้ใช้?
+    <a routerLink="/register" class="form-link">สมัครสมาชิก</a>
+  </div>
+</div>

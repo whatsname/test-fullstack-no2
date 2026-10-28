@@ -1,0 +1,35 @@
+# Binaries and Database
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.db
+*.db-journal
+*.sqlite
+app.db
+test_app.db
+server
+
+# Output of the go build
+/bin/
+/dist/
+
+# Environment files
+.env
+.env.local
+
+# Dependency directories
+vendor/
+node_modules/
+
+# Angular build output
+frontend/dist/
+frontend/.angular/
+
+# IDE & OS Files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.log
